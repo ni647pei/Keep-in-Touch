@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+  <script src="jui/jquery.barrating.min.js"></script>    
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="jui/css/fontawesome-stars.css">    
+  <link rel="stylesheet" href="jui/css/jquery-ui.css"/>
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon"/>
+    
+  <style>
+      #star{
+          position: absolute;
+          top: 50%;
+          left: 41%;
+               
+      }
+      .feedback p{
+          font-family: CoveredByYourGrace;
+          font-size: 220%;
+          position: absolute;
+          top: 35%;
+          left: 40%;
+      }
+      #finish{
+            position: absolute;
+            right: 7%;
+            top: 65%;
+            display: none;
+            width: 13%;
+        }
+  </style>
+</head>    
+<body>
+    <div class="cover" > </div> 
+    <div class="feedback">
+        <p>How's the massage?</p>
+        <div id="star" class="stars stars-example-fontawesome">
+       
+            <select id="rating" name="rating" autocomplete="off">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
+            </select>
+        </div>        
+    </div>
+    <a href="start.html" 
+     onmouseover="swap_image( event, './material/button/finish2.png')" 
+     onmouseout="swap_image( event, './material/button/finish1.png')">
+   
+        <img id="finish" src="./material/button/finish1.png"  /></a>
+<!-------------------menu----------------------------------------->
+    <div class="menu">
+        <img id="menubar" src="material/menu/menubar.png">
+        <img id="closemenu" src="material/menu/closemenu.png">
+        <a href="start.html"><img id="home" src="material/menu/home.png"></a>
+        <a href="#"><img id="member" src="material/menu/member.png"></a>
+        <a href="https://www.youtube.com/watch?v=Mr-nBD19zWE"><img id="tutor" src="material/menu/tutorial.png"></a>
+        <a href="#"><img id="setting" src="material/menu/settings.png"></a>
+    </div>
+            
+<script>
+    
+    $(function() {
+      $('#rating').barrating({
+        theme: 'fontawesome-stars',
+        onSelect: rated
+          });
+        
+   });
+    function rated(){
+          $('#finish').show();
+    }
+    
+    
+//----------------------------menu---------------------------------------------
+  $( "#menubar" ).click(function() {
+    $("#menubar").animate({left:'-5%'});
+    $("#closemenu").animate({left:'94%'});
+    $("#home").animate({left:'19%'}); 
+    $("#member").animate({left:'35%'});  
+    $("#tutor").animate({left:'51%'}); 
+    $("#setting").animate({left:'67%'});  
+    $(".cover").fadeIn(500)
+                .fadeTo(500,0.5);
+  });
+
+$( ".cover , #closemenu" ).click(function() {
+    $("#menubar").animate({left:'-105%'});
+    $("#closemenu").animate({left:'-20%'});
+    $("#home").animate({left:'-78%'}); 
+    $("#member").animate({left:'-63%'});
+    $("#tutor").animate({left:'-47%'});
+    $("#setting").animate({left:'-31%'}); 
+    $(".cover").fadeOut(500);
+  });
+      //------------------------button--------------------------
+         
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}   
+    
+    
+</script>
+    
+</body>
+</html>
+    

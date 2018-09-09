@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+  <script src="jui/jquery.dragg.js"></script> 
+    <script src="jui/vex.combined.min.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-wireframe'</script>
+  <link rel="stylesheet" href="jui/css/vex.css" />
+  <link rel="stylesheet" href="jui/css/vex-theme-wireframe.css" />    
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="jui/css/jquery-ui.css"/>
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon"/>
+    
+  <style>
+      #text{
+            position: fixed;
+            top: 11%;
+            left: 10%;
+          
+            font-family: CoveredByYourGrace;
+            font-size: 220%;
+            
+        }
+      #alert{
+          position: fixed;
+          top: 60%;
+          left: 10%;
+          color: #BC0000;
+          font-family: CoveredByYourGrace;
+          font-style: bold;
+          font-size: 140%;
+          display: none;
+          
+      }
+      #content{
+            
+        }
+      #clip{
+          position: absolute;
+          right: 18%;
+          top: 2%;
+          width: 28%;
+      }
+      #board{
+          position: absolute;
+          right: 7%;
+          top: 7%;
+          width: 50%;
+          height: 180%;
+      }
+      #grandma_pos{
+          position: fixed;
+          left: 5%;
+          top: 25%;
+          width: 35%;
+          
+      }
+      .position img{
+          width: 5%;
+            }
+      #sit{
+          position: fixed;
+          left: 14%;
+          top:80%;              
+      }
+      #up{
+          position: fixed;
+          left: 20%;
+          top:80%;              
+      }
+      #down{
+          position: fixed;
+          left: 26%;
+          top:80%;              
+      }
+      
+      
+      #next{
+            position: absolute;
+            right: 7%;
+            top: 190%;
+            margin-bottom: 7%;
+            width: 15%;
+        }
+      #back{
+            position: fixed;
+            right: 1%;
+            top: 2%;
+            width: 6%;
+        }
+      #fake{
+          position: absolute;
+          top: 32%;
+          right: 14%;
+          width: 36%;
+      }
+        
+        
+    
+    
+  </style>    
+    
+</head>
+    
+<body>
+    <div class="cover" > </div> 
+   <div id="content">
+       <img id="board" src="material/plan/board.png">
+       <img id="clip" src="material/plan/clip.png">
+       <p id="text">What is your client's position?</p>
+       <div><img id="grandma_pos" src="material/plan/Grandma_sit.png"></div>
+       <p id="alert">* Avoid this position if the client has breathing<br> issue, COPD or spinal curvature.</p>
+       <div class="position">
+           <img id="sit" src="material/plan/sit2.png">
+           <img id="up" src="material/plan/up1.png">
+           <img id="down" src="material/plan/down1.png">       
+       </div>
+       <img id="fake" src="material/plan/condition.png">
+    
+    
+    </div> 
+    <a href="plan.html" 
+     onmouseover="swap_image( event, './material/button/next2.png')" 
+     onmouseout="swap_image( event, './material/button/next1.png')">
+   
+        <img id="next" src="./material/button/next1.png"  /></a>
+    
+    <a href="chooseCharacter.html"><img id="back" src="material/button/back.png"></a>
+
+<!-------------------menu----------------------------------------->
+    <div class="menu">
+        <img id="menubar" src="material/menu/menubar.png">
+        <img id="closemenu" src="material/menu/closemenu.png">
+        <a href="start.html"><img id="home" src="material/menu/home.png"></a>
+        <a href="#"><img id="member" src="material/menu/member.png"></a>
+        <a href="https://www.youtube.com/watch?v=Mr-nBD19zWE"><img id="tutor" src="material/menu/tutorial.png"></a>
+        <a href="#"><img id="setting" src="material/menu/settings.png"></a>
+    </div>
+        
+    
+<script>
+    
+    
+//---------------------------position------------------------------------------
+    $(document).ready(function(){
+        vex.dialog.alert({ unsafeMessage: 'You must assess your client before every massage to know whether there are any health conditions that are local or systemic contraindications. <br><br>If a client has a systemic contraindication, such as a fever or viral infection, you should reschedule the appointment.       <br> <br> We will then personalize the direction or rate of movement, excursion, rhythm, or pressure in response to the information you submited.' })
+    });  
+    $("#up").bind('click',posUp); 
+    $("#down").bind('click',posDown); 
+    $("#sit").bind('click',posSit); 
+        function posUp(){
+            $('#alert').hide();
+            $('#up').attr('src',"material/plan/up2.png");
+            $('#grandma_pos').attr('src',"material/plan/Grandma_up.png");
+            $('#down').attr('src',"material/plan/down1.png");
+            $('#sit').attr('src',"material/plan/sit1.png");
+            
+            }
+                       
+        function posDown(){
+            $('#down').attr('src',"material/plan/down2.png");
+            $('#grandma_pos').attr('src',"material/plan/Grandma_down.png");
+            $('#sit').attr('src',"material/plan/sit1.png");
+            $('#up').attr('src',"material/plan/up1.png");
+            $('#alert').show();
+            }
+    
+    function posSit(){
+            $('#alert').hide();
+            $('#sit').attr('src',"material/plan/sit2.png");
+            $('#grandma_pos').attr('src',"material/plan/Grandma_sit.png");
+            $('#down').attr('src',"material/plan/down1.png");
+            $('#up').attr('src',"material/plan/up1.png");
+            }
+     //------------------------button--------------------------
+         
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}
+    
+
+    
+//----------------------------menu---------------------------------------------
+  $( "#menubar" ).click(function() {
+    $("#menubar").animate({left:'-5%'});
+    $("#closemenu").animate({left:'94%'});
+    $("#home").animate({left:'19%'}); 
+    $("#member").animate({left:'35%'});  
+    $("#tutor").animate({left:'51%'}); 
+    $("#setting").animate({left:'67%'});  
+    $(".cover").fadeIn(500)
+                .fadeTo(500,0.5);
+  });
+
+$( ".cover , #closemenu" ).click(function() {
+    $("#menubar").animate({left:'-105%'});
+    $("#closemenu").animate({left:'-20%'});
+    $("#home").animate({left:'-78%'}); 
+    $("#member").animate({left:'-63%'});
+    $("#tutor").animate({left:'-47%'});
+    $("#setting").animate({left:'-31%'}); 
+    $(".cover").fadeOut(500);
+  });
+    
+    
+</script>    
+</body>
+    
+</html>

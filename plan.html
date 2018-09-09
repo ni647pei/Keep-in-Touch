@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+  <link href="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
+  <link href="jui/css/square/square.css" rel="stylesheet">
+  <script src="jui/icheck.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="jui/css/jquery-ui.css"/>
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon"/>
+    
+  <style>
+      #remind1{
+            position: fixed;
+            top: 35%;
+            left: 8%;
+            font-family: CoveredByYourGrace;
+            font-size: 200%;
+        }
+      #remind2{
+            position: fixed;
+            top: 50%;
+            left: 8%;
+            font-family: CoveredByYourGrace;
+            font-size: 150%;
+        }
+      
+      #loadingTxt{
+          font-family: CoveredByYourGrace;
+          font-size: 180%;
+          text-align: center;
+          margin-top: 36%;
+      }
+      #back{
+            position: fixed;
+            right: 1%;
+            top: 2%;
+            width: 6%;
+        }
+        
+      #content{
+          text-align: center;
+      }
+      #tray{
+          position: fixed;
+          top: -50%;
+          left: 26.5%;
+          width: 47%;
+      }
+      #paper{
+          position: absolute;
+          top: -195%;
+          left: 30.5%;
+          width: 39%;
+          height: 190%;
+      }
+      #printer{
+         position: fixed;
+          top: -40%;
+          left: 16%;
+          width: 67%; 
+          z-index: 40;
+      }
+      #arrow{
+          width: 15%;
+          position: fixed;
+          right: 7%;
+          bottom: 23%;
+      }
+      #ink{
+          width: 13%;
+          position: fixed;
+          right: 10%;
+          bottom: 9%;
+      }
+      h1{
+          font-family: consolab;
+          font-size: 230%;
+          position: absolute;
+          top: -175%;
+          left: 41%;
+      }
+      .duration p{
+          font-family: consolab;
+          font-size: 150%;
+          position: absolute;
+          top: -163%;
+          left: 35%;
+      }
+      #min{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 56%;
+          top: -155%;
+          }
+      #appearance3{
+          position: absolute;
+          left: 46%;
+          top: -159%;
+          font-family: consolab;
+        }
+      .area p{
+          font-family: consolab;
+          font-size: 150%;
+          position: absolute;
+          top: -139%;
+          left: 35%;
+      }
+      #body{
+          width: 17%;
+          position: absolute;
+          left: 42.5%;
+          top: -131%;
+      }
+      #head{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 52%;
+          top: -130%;
+          }
+      #shoulder{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 53%;
+          top: -120%;
+          }
+      #back_client{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 48%;
+          top: -116%;
+          }
+      #arm{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 41%;
+          top: -108%;
+          }
+
+      #hand{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 38%;
+          top: -95%;
+      }
+      #leg{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 43%;
+          top: -77%;
+          }
+      #feet{
+          font-family: consolab;
+          font-size: 120%;
+          position: absolute;
+          left: 42%;
+          top: -66%;
+          }
+      #reset1{
+          position: absolute;
+          left: 61%;
+          top: -148%;
+          width: 3%;
+          display: none;
+      }
+      #reset2{
+          position: absolute;
+          left: 61%;
+          top: -70%;
+          width: 3%;
+          display: none;
+      }
+      #warning{
+          font-family: CoveredByYourGrace;
+          font-size: 120%;
+          color: #BC0000;
+          position: absolute;
+          left: 35%;
+          top: -158%;
+          display: none;
+      }
+      #really{
+          font-family: CoveredByYourGrace;
+          font-size: 120%;
+          color: #BC0000;
+          position: absolute;
+          left: 35%;
+          top: -158%;
+          display: none;
+      }
+      #unsign{
+          position: absolute;
+          top: -40%;
+          left: 55%;
+          width: 10%;
+      }  
+      #thumb{
+          display: none;
+          width: 7%;
+      }
+      #agreement{
+          font-family: consolab;
+          font-size: 100%;
+          position: absolute;
+          top: -50%;
+          left: 35%;
+          text-align: left;
+          
+      }
+      #next{
+            position: fixed;
+            right: 10%;
+            top: 45%;
+            margin-bottom: 7%;
+            width: 15%;
+          display: none;
+        }
+      #date{
+          font-family: consola;
+          font-size: 90%;
+          position: absolute;
+          top: -21%;
+          left: 59%;
+          display: none;
+      }
+    
+    
+  </style>    
+    
+</head>
+    
+
+<body onload="myFunction()" >
+ 
+<div id="loader"></div>
+<p id="loadingTxt"></p>    
+<div style="display:none;" id="myDiv">
+    <div class="cover" > </div> 
+    <div id="content">
+        <img id="tray" src="material/plan/tray.png">
+        
+        <div>
+            <img id="paper" src="material/plan/paper.png">
+            <h1>Massage Plan</h1>
+            <div class="duration">
+                <p>Duration:</p>
+                <div id="appearance3"></div>
+                <p id="warning">It's not suggested <br>to massage seniors <br>over 30 minutes.</p>
+                <p id="really">Are you too busy to <br>spend only 5 minutes<br> on your grandma?</p>
+                <p id="min">min</p>
+                <img id="reset1" src="material/button/back.png">
+            </div>
+            <div class="area">
+            <p>Massage Area:</p>
+            <img id="body" src="material/plan/body.png">
+            <img id="reset2" src="material/button/back.png">
+            <label  id="head"> 
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="head">
+                </div> 
+                Head
+            </label>
+            <label  id="shoulder"> 
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="shoulder" checked>
+                </div> 
+                Shoulder
+            </label>
+            <label  id="back_client"> 
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="back" checked>
+                </div> 
+                Back
+            </label>
+            <label  id="arm"> 
+                Arms
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="arm" checked>
+                </div> 
+                
+            </label>
+            <label  id="hand"> 
+                Hands
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="hand" checked>
+                </div> 
+                
+            </label>
+            <label  id="leg">
+                Legs
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="leg">
+                </div> 
+                
+            </label>
+            <label  id="feet"> 
+                Feet
+                <div class="icheckbox_square">
+                <input type="checkbox" name="area" value="feet">
+                </div> 
+                
+            </label>
+        </div>
+        
+            <div>
+                <p id="agreement">
+                By placing my thumbprint on this massage plan,<br>
+                I agree that it is my responsibility to provide<br>
+                the the right information from the client to<br>
+                create the most suitable plan.<br>
+                <br>
+                I also clearly understand that<br>
+                this application doesn’t make<br> 
+                diagnosis. I should always<br>
+                refer to the professionals<br>
+                when something’s in doubt.</p>
+                <img id="unsign" src="material/plan/unsigned.png">
+                <img id="thumb" src="material/plan/thumb.png">
+                <div id="date"></div>
+            </div>
+        </div>    
+        <img id="printer" src="material/plan/printer.png">
+        <div>
+            <p id="remind1">Does this massage plan<br> suit your needs?</p>
+            <p id="remind2">You can make your own changes!</p>
+        </div>    
+        <img id="ink" src="material/plan/ink.png">
+        <img id="arrow" src="material/plan/arrow.png">
+        <a href="massaging.html" 
+            onmouseover="swap_image( event, './material/button/next2.png')" 
+            onmouseout="swap_image( event, './material/button/next1.png')">
+   
+            <img id="next" src="./material/button/next1.png"/></a>    
+        <a href="clientInfo.html"><img id="back" src="material/button/back.png"></a>
+    
+    </div>  
+<!-------------------menu----------------------------------------->
+        <div class="menu">
+            <img id="menubar" src="material/menu/menubar.png">
+            <img id="closemenu" src="material/menu/closemenu.png">
+            <a href="start.html"><img id="home" src="material/menu/home.png"></a>
+            <a href="#"><img id="member" src="material/menu/member.png"></a>
+            <a href="https://www.youtube.com/watch?v=Mr-nBD19zWE"><img id="tutor" src="material/menu/tutorial.png"></a>
+            <a href="#"><img id="setting" src="material/menu/settings.png"></a>
+        </div>
+    </div>
+     
+    
+<script>
+var myVar;
+ 
+function myFunction() {
+    myVar = setTimeout(showPage, 1500);
+    document.getElementById("loadingTxt").innerHTML= "Generating massage plan..."
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("loadingTxt").style.display = "none";    
+  document.getElementById("myDiv").style.display = "block";
+  $('#paper, h1, .duration p, #appearance3, #reset1, #reset2, .area p, .area img, label, #agreement, #unsign, #date').animate({top: '+=200%'}, 5000); 
+  
+}
+    
+ 
+
+//----------------------------menu---------------------------------------------
+  $( "#menubar" ).click(function() {
+    $("#menubar").animate({left:'-5%'});
+    $("#closemenu").animate({left:'94%'});
+    $("#home").animate({left:'19%'}); 
+    $("#member").animate({left:'35%'});  
+    $("#tutor").animate({left:'51%'}); 
+    $("#setting").animate({left:'67%'});  
+    $(".cover").fadeIn(500)
+                .fadeTo(500,0.5);
+  });
+
+$( ".cover , #closemenu" ).click(function() {
+    $("#menubar").animate({left:'-105%'});
+    $("#closemenu").animate({left:'-20%'});
+    $("#home").animate({left:'-78%'}); 
+    $("#member").animate({left:'-63%'});
+    $("#tutor").animate({left:'-47%'});
+    $("#setting").animate({left:'-31%'}); 
+    $(".cover").fadeOut(500);
+  });
+//---------------------------slider--------------------------------------
+    
+    $("#appearance3").roundSlider({
+    radius: 60,
+    width: 9,
+    handleSize: "+15",
+    sliderType: "min-range",
+    value: 15,
+    editableTooltip: false,
+    startAngle: 90,
+    max: 60,
+    min: 0,
+    change: resetValue
+});
+    function resetValue(e){
+        $('#reset1').show();
+        var currentValue = $("#appearance3").roundSlider("option", "value");
+        if( currentValue > 30){
+            $("#warning").show();
+            $("#really").hide();
+            
+        }else if( currentValue < 5 ){
+            $("#warning").hide();
+            $("#really").show();
+        }else{
+            $("#warning").hide();
+            $("#really").hide();
+                     
+        }
+    }
+    $("#reset1").bind('click',reset1); 
+    
+    function reset1(e){
+        $("#appearance3").roundSlider("setValue", 15);
+        $('#reset1').hide();
+    }
+//-----------------------checkbox--------------------------------------------- 
+    $('input').iCheck({
+            checkboxClass: 'icheckbox_square',
+            increaseArea: '20%' // optional
+    });   
+
+    $('input').on('ifChanged', function(event){
+        $('#reset2').show();
+    });  
+    $("#reset2").bind('click',reset2);         
+    function reset2(e){
+        $('#head, #leg, #feet').iCheck('uncheck');
+        $('#shoulder, #back, #arm, #hand').iCheck('check');
+        $('#reset2').hide();
+    }   
+    
+//--------------------------sign------------------------------------  
+    $("#ink").bind('click',stamp); 
+    function stamp(e){
+        $("#paper, #unsign").click(function(e) {
+        var o = {
+            left: e.pageX - 40,
+            top: e.pageY - 50,            
+            };
+        $("#thumb").clone().appendTo('body').show(0).offset(o);
+        $('#next').show();
+        $('#date').show();    
+        });
+    }
+    var d = new Date();
+    document.getElementById("date").innerHTML = d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear();
+    
+//------------------------button--------------------------
+         
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}
+    
+</script> 
+    
+</body>
+    
+</html>    

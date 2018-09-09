@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="jui/css/jquery-ui.css"/>
+    <script src="jui/jquery.dragg.js"></script>
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon"/>
+<style>
+   
+     @font-face{
+        font-family: CoveredByYourGrace;
+        src: url('CoveredByYourGrace.ttf')
+    }
+    
+    p{
+        
+        padding: 1%;
+    }
+   .char{ 
+      
+      display: inline-block;
+      position: fixed;
+      top:62%;
+      left: 12%;
+      
+      } 
+    .char img{
+        width: 7%;
+    }
+     #master{
+            position: absolute;
+            left: 25%;
+            top: 25%;            
+                }
+    #client{
+            position: absolute;
+            left: 18%;
+            top: 29%; 
+        }
+    
+    
+    
+  body{
+    font-size: 25px;
+    font-family: CoveredByYourGrace;
+    background-image: url(./material/appointment/notebook.png);
+    background-repeat: no-repeat;
+    background-size: 90% 90%;
+      background-position: bottom;
+      background-attachment:fixed;
+    
+    
+      }
+    h1{font-size: 60px;
+    color: black;
+    text-align: center;}
+    
+    h2{
+        font-size: 40px;
+        color: black;
+        
+    }
+    #step1{
+        position: fixed;
+        left: 14%;
+        top: 15%;
+    }
+    #step2 {
+    position: fixed;
+    top: 17%;
+    right: 12%;
+    }
+    #step3{
+    position: fixed;
+    top: 43%;
+    right: 15%;    
+        
+    }
+    
+    .rollover{
+        position:fixed ;
+        bottom: 7%;
+        right: 10%;
+        
+    }
+    .hide-replaced.ws-inputreplace {
+    display: none !important;
+}
+.input-picker .picker-list td > button.othermonth {
+    color: #888888;
+    background: #fff;
+}
+.ws-inline-picker.ws-size-2, .ws-inline-picker.ws-size-4 {
+    width: 49.6154em;
+}
+.ws-size-4 .ws-index-0, .ws-size-4 .ws-index-1 {
+    border-bottom: 0.07692em solid #eee;
+    padding-bottom: 1em;
+    margin-bottom: 0.5em;
+}
+.picker-list.ws-index-2, .picker-list.ws-index-3 {
+    margin-top: 3.5em;
+}
+div.ws-invalid input {
+    border-color: #c88;
+}
+.ws-invalid label {
+    color: #933;
+}
+div.ws-success input {
+    border-color: #8c8;
+}
+
+.form-row {
+    padding: 5px 10px;
+    margin: 5px 0;
+}
+label {
+    display: block;
+    margin: 3px 0;
+}
+.form-row input {
+    width: 220px;
+    padding: 3px 1px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+.form-row input[type="checkbox"] {
+    width: 15px;
+}
+.date-display {
+    display: inline-block;
+    min-width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    min-height: 1em;
+}
+.show-inputbtns .input-buttons {
+    display: inline-block;
+}
+textarea {
+    width: 100%;
+    
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+textarea:focus {
+    border: 3px solid #555;
+} 
+    
+    #drag{
+        position: fixed;
+        width: 8%;
+        top: 45%;
+        left: 9%;
+    }  
+    #back{
+            position: fixed;
+            right: 1%;
+            top: 2%;
+            width: 6%;
+        }
+</style>
+
+    
+</head>
+<body>
+    <div class="cover" > </div>     
+    <header>
+    <h1>
+        Make an appointment
+        </h1>
+    </header>
+    <div id="step1">
+    <h2>Step 1/ Who are included?</h2>
+    </div>
+    <div>
+      <img id="client" src="material/drag/shadow_sit.png" width="10%">
+       <img id="master" src="material/drag/shadow_stand.png" width="14%">
+     </div>
+
+<div class="char">
+
+  <img src="./material/characters/Baby.png" data-toggle="tooltip" data-placement="top" title="He knows nothing" id="Baby">
+  <img src="./material/characters/Angela.png" data-toggle="tooltip" data-placement="top" title="Princess"  id="Angela">
+  <img src="./material/characters/Grandma.png" data-toggle="tooltip" data-placement="top" title="Grandma" id="Grandma">
+   <img src="./material/characters/Grandpa.png" data-toggle="tooltip" data-placement="top" title="Grandpa" id="Grandpa">
+    <img src="./material/characters/Peter.png" data-toggle="tooltip" data-placement="top" title="Justin Bebier" id="Peter">
+</div>
+    
+
+    <form action="#" id="step2" class="ws-validate">
+     <h2>Step 2/ Choose a date</h2>
+
+    <div class="form-row show-inputbtns">
+        <input type="date" data-date-inline-picker="false" data-date-popover='{
+	"inline": true
+}' />
+    </div>
+    
+</form>  
+<form id="step3">
+    <h2>Step 3/ Leave some message</h2>
+    
+  <textarea rows="3" id="fname">Darling, my back start to hurt again.</textarea>
+</form>
+ 
+     <p class="rollover">
+        <a href="start.html" 
+            onmouseover="swap_image( event, './material/button/SetPlan2.png')" 
+            onmouseout="swap_image( event, './material/button/SetPlan1.png')">
+   
+            <img src="./material/button/SetPlan1.png" width="160px" heigt="80px"/>
+        </a></p>
+
+
+<img id="drag" src="./material/drag/drag.png" />
+<a href="start.html"><img id="back" src="material/button/back.png"></a>
+ 
+<!-------------------menu----------------------------------------->
+    <div class="menu">
+        <img id="menubar" src="material/menu/menubar.png">
+        <img id="closemenu" src="material/menu/closemenu.png">
+        <a href="start.html"><img id="home" src="material/menu/home.png"></a>
+        <a href="#"><img id="member" src="material/menu/member.png"></a>
+        <a href="#"><img id="tutor" src="material/menu/tutorial.png"></a>
+        <a href="#"><img id="setting" src="material/menu/settings.png"></a>
+    </div>     
+     
+     
+<script>
+//----------------------------drag--------------------------------------------------        
+$(document).ready(function(e) {
+   	//drag Angela
+    $('#next').hide();
+});
+	$('#Angela').dragg();
+	var content1;
+    var counter= 0;
+    
+    $(document).on('dragstart', '#Angela', function(e){
+    content1=$(this).clone();
+                
+    });
+		
+	$(document).on('drag', '#helper', function(e){
+        if(counter==0){
+            $(this).attr('src', "material/drag/Angela_drag.png")
+                    .css('width',"10%");
+        }else{
+            $(this).attr('src', "material/drag/Grandma_drag.png");
+        }
+		
+    });
+		
+    	
+	$(document).on('drop', '#master', function(e){
+        $(content1).appendTo(this);
+        $('#Angela').remove();
+        $('#master').attr('src', "material/drag/Angela_stand.png");
+        $('#info_master').show();
+        counter++;
+      });
+    
+    //drag grandma
+    $('#Grandma').dragg();
+	var content2;
+    
+    $(document).on('dragstart', '#Grandma', function(e){
+        
+    content2=$(this).clone();
+    });
+		
+		
+   	$(document).on('drop', '#client', function(e){
+        $(content2).appendTo(this);
+        $('#Grandma').remove();
+        $('#client').attr('src', "material/drag/Grandma_sit.png");
+        $('#info_client').show();
+        $('#next').show();
+        $('#hint').hide();
+        counter--;
+      });
+    
+        
+          
+webshim.setOptions('forms-ext', {
+           replaceUI: 'auto',
+           types: 'date',
+           date: {
+               startView: 2,
+               inlinePicker: true,
+                classes: 'hide-inputbtns'
+                    }
+        });
+       webshim.setOptions('forms', {
+            lazyCustomMessages: true
+       });
+//start polyfilling
+       webshim.polyfill('forms forms-ext');
+
+//only last example using format display
+       $(function () {
+            $('.format-date').each(function () {
+                var $display = $('.date-display', this);
+                $(this).on('change', function (e) {
+            //webshim.format will automatically format date to according to webshim.activeLang or the browsers locale
+                var localizedDate = webshim.format.date($.prop(e.target, 'value'));
+                    $display.html(localizedDate);
+                });
+            });
+        });            
+          
+//------------------------button---------------------------------          
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}
+//----------------------------menu---------------------------------------------
+    $("#menubar" ).click(function(){
+        $("#menubar").animate({left:'-5%'});
+        $("#closemenu").animate({left:'94%'});
+        $("#home").animate({left:'19%'}); 
+        $("#member").animate({left:'35%'});  
+        $("#tutor").animate({left:'51%'}); 
+        $("#setting").animate({left:'67%'});  
+        $(".cover").fadeIn(500)
+                    .fadeTo(500,0.5);
+    });
+
+$( ".cover , #closemenu" ).click(function() {
+    $("#menubar").animate({left:'-105%'});
+    $("#closemenu").animate({left:'-20%'});
+    $("#home").animate({left:'-78%'}); 
+    $("#member").animate({left:'-63%'});
+    $("#tutor").animate({left:'-47%'});
+    $("#setting").animate({left:'-31%'}); 
+    $(".cover").fadeOut(500);
+  });    
+</script>
+   
+
+</body>
+</html>
+

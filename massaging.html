@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+  <script src="jui/jquery.dragg.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/utils/Draggable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>    
+  <script src="jui/vex.combined.min.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-wireframe'</script>
+  <script src="jui/QTransform.js"></script>
+    
+  <link rel="stylesheet" href="jui/css/vex.css" />
+  <link rel="stylesheet" href="jui/css/vex-theme-wireframe.css" />    
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="jui/css/jquery-ui.css"/>
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon"/>
+    
+  <style>
+      #body{
+          width: 90%;
+          position: absolute;
+          left: 5%;
+      }
+      #client{
+          width: 23%;
+          position: fixed;
+      }
+      #pause{
+          width: 8%;
+          position: fixed;
+          top: 2 %;
+          right: 1%;
+          z-index: 55;
+      }#play{
+          width: 8%;
+          position: fixed;
+          top: 2 %;
+          right: 1%;
+          z-index: 55;
+      }
+      #flow_switch{
+          position: fixed;
+          top: 8%;
+          right: 17%;
+          width: 5%;
+          z-index: 51;
+      }
+      #flow_handle{
+          position: fixed;
+          top: 7.5%;
+          right: 19%;
+          width: 3%;
+          z-index: 52;
+      }
+      .flow h1{
+          font-family: CoveredByYourGrace;
+          position: fixed;
+          right: 13%;
+          top: 0%;
+          z-index: 53;
+          
+      }
+      
+      #flow1{
+          position: absolute;
+          width: 25%;
+          top: 53%;
+          right: 0%;
+          z-index: 50;
+          display: none;
+          
+      }
+      
+      #press_board{
+          position: fixed;
+          left: 5%;
+          top: 30%;
+          width: 20%;
+      }
+      #pointer{
+          position: fixed;
+          left: 9.5%;
+          top: 45%;
+          width: 6%;
+          transform-origin: 90% 50%;
+      }
+      
+      .pressure p{
+          font-family: CoveredByYourGrace;
+          font-size: 200%;
+          position: fixed;
+          left: 6.5%;
+          top: 48%;
+          display: none;
+          
+      }
+      #add{
+          position: fixed;
+          top: 91%;
+          left: -3%;
+          width: 105%;
+          z-index: 100;
+      }
+      
+      #tip{
+          width: 17%;
+          position: fixed;
+          top: 58%;
+          left: 15%;
+          z-index: 90;
+          display: none;
+      }
+      #timer{
+          font-family: CoveredByYourGrace;
+           font-size: 250%;
+          position: fixed;
+           top: 13%;
+           right: 3%;
+           z-index: 55;
+      }
+      #resting{
+          position: absolute;
+          top: 62.5%;
+          left: 32%;
+          width: 35%;
+          z-index: 60;
+          display: none;
+      }
+      #fist{
+          position: absolute;
+          top: 75%;
+          left: 35%;
+          width: 29%;
+          z-index: 60;
+          display: none;
+          
+      }
+      #message{
+          position: absolute;
+          top: 56%;
+          left: 41%;
+          width: 20%;
+          display: none;
+      }
+      #score{
+          position: fixed;
+          top: 30%;
+          left: 23%;
+          width: 12%;
+          display: none;
+          
+      }
+      #aim{
+          position: absolute;
+          top: 71%;
+          left: 41.5%;
+          width: 17%;
+          z-index: 59;
+          display: none;
+      }
+      #heart{
+          width: 8%;
+          position: fixed;
+          top: 0.5%;
+          left: 10%;
+      }
+      .cover_b{
+          background-color: black;
+          width:100%;
+          height:100%;
+          display: none;
+          opacity: 0.7;
+          z-index: 300;
+          position: fixed;
+          top: 0%;
+          left: 0%;
+      }
+      .reward{
+          display: none;
+      }
+      #reward{
+          width: 80%;
+          position: fixed;
+          top: 5%;
+          left: 10%;
+          z-index: 301;
+      }
+      .R p{
+          font-family: CoveredByYourGrace;
+           font-size: 280%;
+          color: #3D3D3D;
+          position: fixed;
+           top: 40%;
+           right: 24%;
+           z-index: 400;
+          display: none;
+      }
+      .L p{
+          font-family: CoveredByYourGrace;
+           font-size: 280%;
+          color: #3D3D3D;
+          position: fixed;
+           top: 40%;
+           left: 27%;
+           z-index: 400;
+          display: none;
+      }
+      #next{
+            position: fixed;
+            right: 20%;
+            top: 67%;
+            width: 15%;
+          z-index: 400;
+        }
+      
+      
+  </style>  
+</head>   
+<body>
+    <div class="cover" > </div> 
+  <img id="body" src="material/massaging/body.png"> 
+  <img id="client" src="material/massaging/client.png"> 
+  <img id="heart" src="material/massaging/heart.gif">
+  <img id="pause" src="material/massaging/pause1.png">
+  <img id="play" src="material/massaging/play1.png">
+  <div id="timer">15:00</div>    
+  <img id="add" src="material/massaging/addtreatment.png">   
+  
+  <img id="tip" src="material/massaging/tip1.png">    
+    <div class="flow">
+        <img id="flow_switch" src="material/massaging/flow_off.png">
+        <img id="flow_handle" src="material/massaging/flow_handle.png">
+        <h1>Show the flow</h1>
+        <img id="flow1" src="material/massaging/flow1.png">
+    </div>
+    <div class="pressure">
+        <img id="press_board" src="material/massaging/press_board.png">
+        <p>Keep this pressure!</p>
+        <img id="pointer" src="material/massaging/press_point.png">
+    </div>
+    
+    <img id="resting" src="material/massaging/restingstroke.png">
+    <img id="fist" src="material/massaging/fist.png">
+    <img id="message" src="material/massaging/perfect.png">
+    <img id="score" src="material/massaging/wellbeing.png">
+    <img id="aim" src="material/massaging/aiming.png">
+    <div class="cover_b"></div>
+    <div class="reward">
+        <img id="reward" src="material/massaging/reward.png">
+        <div class="R">
+            <p>+389</p>
+                
+        </div>
+        <div class="L">
+            <p>+520</p>
+            
+        </div>
+         <a id="next" href="feedback.html" 
+            onmouseover="swap_image( event, './material/button/next2.png')" 
+            onmouseout="swap_image( event, './material/button/next1.png')">
+   
+        <img id="next" src="./material/button/next1.png"/></a>
+    
+      
+    </div>
+
+    
+
+       
+<!-------------------menu----------------------------------------->
+    <div class="menu">
+        <img id="menubar" src="material/menu/menubar.png">
+        <img id="closemenu" src="material/menu/closemenu.png">
+        <a href="start.html"><img id="home" src="material/menu/home.png"></a>
+        <a href="#"><img id="member" src="material/menu/member.png"></a>
+        <a href="https://www.youtube.com/watch?v=Mr-nBD19zWE"><img id="tutor" src="material/menu/tutorial.png"></a>
+        <a href="#"><img id="setting" src="material/menu/settings.png"></a>
+    </div>
+    
+    
+<script>
+        
+    vex.dialog.alert({ unsafeMessage: 'Before you start, please note : <br><br>Deep, direct, or compressive pressure should be avoided in the red marked area.<br><br> The massage section will start after you press OK.<br> Enjoy your time :)',
+callback: function(){
+   var CountDown = (function ($) {
+    // Length ms 
+    var TimeOut = 10000;
+    // Interval ms
+    var TimeGap = 1000;
+    
+    var CurrentTime = ( new Date() ).getTime();
+    var EndTime = ( new Date() ).getTime() + TimeOut;
+    
+    var GuiTimer = $('#timer');
+    var GuiPause = $('#pause');
+    var GuiResume = $('#play').hide();
+    
+    var Running = true;
+    
+    var UpdateTimer = function() {
+        // Run till timeout
+        if( CurrentTime + TimeGap < EndTime ) {
+            setTimeout( UpdateTimer, TimeGap );
+        }
+        // Countdown if running
+        if( Running ) {
+            CurrentTime += TimeGap;
+            if( CurrentTime >= EndTime ) {
+                GuiTimer.css('color','red');
+            }
+        }
+        // Update Gui
+        var Time = new Date();
+        Time.setTime( EndTime - CurrentTime );
+        var Minutes = Time.getMinutes();
+        var Seconds = Time.getSeconds();
+        
+        GuiTimer.html( 
+            (Minutes < 10 ? '0' : '') + Minutes 
+            + ':' 
+            + (Seconds < 10 ? '0' : '') + Seconds );
+    };
+    
+    var Pause = function() {
+        Running = false;
+        GuiPause.hide();
+        GuiResume.show();
+       
+    };
+    
+    var Resume = function() {
+        Running = true;
+        GuiPause.show();
+        GuiResume.hide();
+    };
+    
+    var Start = function( Timeout ) {
+        TimeOut = Timeout;
+        CurrentTime = ( new Date() ).getTime();
+        EndTime = ( new Date() ).getTime() + TimeOut;
+        UpdateTimer();
+    };
+
+    return {
+        Pause: Pause,
+        Resume: Resume,
+        Start: Start
+    };
+})(jQuery);
+
+jQuery('#pause').on('click',CountDown.Pause);
+jQuery('#play').on('click',CountDown.Resume);
+    
+
+
+    
+
+    
+
+    
+    
+    
+// ms
+CountDown.Start(900000);
+   
+$("#tip").delay(1000).show("fast");    
+$("#resting").delay(2000).slideDown("slow");
+$('#pointer').delay(3000).animate({rotate: '90deg'}, 500);   
+$(".pressure p").delay(3000).show("fast");  
+$('#pointer').delay(300).animate({rotate: '95deg'}, 300); 
+$('#pointer').delay(500).animate({rotate: '80deg'}, 300);
+$('#pointer').delay(500).animate({rotate: '90deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '100deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '95deg'}, 300); 
+$('#pointer').delay(500).animate({rotate: '80deg'}, 300);
+$('#pointer').delay(500).animate({rotate: '90deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '100deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '95deg'}, 300); 
+$('#pointer').delay(500).animate({rotate: '80deg'}, 300);
+$('#pointer').delay(500).animate({rotate: '90deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '100deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '95deg'}, 300); 
+//$('#pointer').delay(500).animate({rotate: '80deg'}, 300);
+//$('#pointer').delay(500).animate({rotate: '90deg'}, 300);
+$('#pointer').delay(300).animate({rotate: '100deg'}, 300); 
+$('#pointer').delay(300).animate({rotate: '95deg'}, 300); 
+$('#message').delay(15000).show("fast");
+$('#score').delay(15500).fadeIn("fast")
+            .animate({top: '-=10%'},"slow")
+            .fadeOut("slow");
+$('#message').delay(2000).fadeOut("fast");
+
+$('#pointer').delay(1000).animate({rotate: '80deg'}, 300, nextStroke);
+
+function nextStroke(){
+    function aimHide(){
+        $('#aim').fadeOut("slow");
+        //$('#aim').delay(2000).css("top","83%");
+             }
+    $("#resting").delay(1000).fadeOut("slow");
+    $('#pointer').delay(3000).animate({rotate: '0deg'}, 300);
+    $(".pressure p").delay(3000).hide();
+    $("#tip").delay(4000).attr("src", "material/massaging/tip2.png");
+    $('#flow1').attr("src","material/massaging/flow2.png");
+    //1
+    $('#fist').delay(4500).slideDown("slow");
+    $('#aim').delay(6000).fadeIn("fast");
+    $('#fist').delay(2000).animate({top: '-=8%'}, 500, aimHide); 
+    $('#pointer').delay(4000).animate({rotate: '90deg'}, 500);   
+    $(".pressure p").delay(4000).show("fast"); 
+    $('#message').delay(5500).show("fast");
+    $('#score').delay(6000).fadeIn("fast")
+            .animate({top: '-=10%'},"slow")
+            .fadeOut("slow");
+    $('#message').delay(2000).fadeOut("fast", finish);
+    /*
+    $('#fist').delay(3500).animate({top: '+=20%'}, 500);
+    
+    $('#aim').delay(2000).show("fast");
+    $('#fist').delay(1000).animate({top: '+=8%'}, 500, aimHide); 
+    $('#pointer').delay(4500).animate({rotate: '90deg'}, 500);   
+    $(".pressure p").delay(4500).show("fast"); 
+    $('#message').delay(4500).show("fast");
+    $('#message').delay(1500).hide("fast");     */
+} 
+
+function finish(){
+    $('#tip, #fist').hide(500);
+    $(".cover_b").fadeIn(500);
+                
+    $('.reward').delay(1000).fadeIn(1000);
+    $('.R p, .L p').delay(2000).fadeIn("fast");
+
+}    
+ }})
+   
+    
+  
+//---------------------------------interface-----------------------------------    
+    Draggable.create("#tip");
+    
+   
+    var flow_switch = 0;
+    var add_click =0;
+    
+    $( "#flow_switch" ).click(function() {
+        if(flow_switch==0){
+            $('#flow_handle').animate({left: "+=2%"});
+            $('#flow_switch').attr('src',"material/massaging/flow_on.png");
+            $('#flow1').show();
+            flow_switch ++;
+        }else{
+            $('#flow_handle').animate({left: "-=2%"});
+            $('#flow_switch').attr('src',"material/massaging/flow_off.png");
+            flow_switch --;
+            $('#flow1').hide();
+            $('#flow2').hide();
+        } 
+    });
+    $( "#add" ).click(function() {
+        if(add_click==0){
+            $('#add').animate({top: "-=25%"});
+            add_click ++;
+        }else{
+           $('#add').animate({top: "+=25%"});
+            add_click --; 
+        }
+    });
+    
+    //-------------------------timer-----------------------------
+   /* var mins = 15;  
+    var secs = mins * 60;
+    var currentSeconds = 0;
+    var currentMinutes = 0;
+    
+    //setTimeout(Decrement,1000); 
+
+    function Decrement() {
+        currentMinutes = Math.floor(secs / 60);
+        currentSeconds = secs % 60;
+        if(currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
+        secs--;
+        document.getElementById("timer").innerHTML = currentMinutes + ":" + currentSeconds; 
+        if(secs !== -1) setTimeout('Decrement()',1000);
+    }
+    
+    $('#pause').bind('click',pause);
+    function pause(){
+        clearInterval(setTimeout(Decrement,1000));
+    }
+    */
+    
+    
+        
+     //------------------------button--------------------------
+         
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}
+//----------------------------menu---------------------------------------------
+  $( "#menubar" ).click(function() {
+    $("#menubar").animate({left:'-5%'});
+    $("#closemenu").animate({left:'94%'});
+    $("#home").animate({left:'19%'}); 
+    $("#member").animate({left:'35%'});  
+    $("#tutor").animate({left:'51%'}); 
+    $("#setting").animate({left:'67%'});  
+    $(".cover").fadeIn(500)
+                .fadeTo(500,0.5);
+  });
+
+$( ".cover , #closemenu" ).click(function() {
+    $("#menubar").animate({left:'-105%'});
+    $("#closemenu").animate({left:'-20%'});
+    $("#home").animate({left:'-78%'}); 
+    $("#member").animate({left:'-63%'});
+    $("#tutor").animate({left:'-47%'});
+    $("#setting").animate({left:'-31%'}); 
+    $(".cover").fadeOut(500);
+  });
+</script>    
+</body> 
+</html>    

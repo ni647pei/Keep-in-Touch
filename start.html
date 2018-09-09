@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keep in Touch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="./material/logo_title.png" type="image/x-icon">
+<style>
+input{
+    position: absolute;
+    
+    top: 5px;
+    right: 5px;}    
+/* Center the loader */
+
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+#content p.rollover { 
+   
+  margin-top: 40%; 
+  margin-bottom: 0%; 
+  text-align: center; 
+} 
+
+</style>
+</head>
+    
+<!---------------------------loader-------------------------------------->    
+    
+<body onload="myFunction()" style="margin:0;">
+ 
+<div id="loader">
+ <script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 2850);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+    </script>
+    </div>
+
+    
+<div style="display:none;" id="myDiv" class="animate-bottom" align="middle">
+    
+    <script>    
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+    
+  
+    
+    
+  <input type="image" src="./material/button/exit.png" data-toggle="tooltip" data-placement="left" title="Quit" alt="quit" onclick="self.close()">
+    
+    
+  <img style="margin-top: 18%; margin-bottom: 2%;" src="./material/logo.png" width="50%" height="50%">
+
+<!---------------------------button-------------------------------------->
+    
+<p class="rollover">
+    <script>
+    
+function swap_image( event, image_url ) {
+   var e = event || window.event;
+   
+   // test for W3C or IE event object to get event node information
+   if( e.target )
+     var node = e.target;
+   else
+     var node = e.srcElement;
+
+   // test to see if there is a valid dom node
+   if( node ) 
+     // If the node is an IMG node then a mouse event ocuured and use the event node to change images
+     if( node.tagName == "IMG" )
+      node.src = image_url;
+      // Else the node is a focus event and on the A element is the event node and need to get the child image node to do image swap  
+   else
+      node.getElementsByTagName("img")[0].src = image_url;
+    
+   return false;
+  
+}
+    </script>
+    <a href="chooseCharacter.html" 
+     onmouseover="swap_image( event, './material/button/MassageNow2.png')" 
+     onmouseout="swap_image( event, './material/button/MassageNow1.png')">
+   
+     <img src="./material/button/MassageNow1.png" width="25%" height="25%" />
+     
+   
+  </a>    
+  <a href="appointment.html" 
+     onmouseover="swap_image( event, './material/button/MassageLater2.png')" 
+     onmouseout="swap_image( event, './material/button/MassageLater1.png')">
+   
+     <img src="./material/button/MassageLater1.png" width="18%" height="18%"/>
+   
+  </a>
+
+  <a href="#" 
+     onmouseover="swap_image( event, './material/button/Members2.png')" 
+     onmouseout="swap_image( event, './material/button/Members1.png')">
+   
+     <img src="./material/button/Members1.png" width="18%" height="18%"/>
+   
+  </a>  
+  
+    <a href="#" 
+     onmouseover="swap_image( event, './material/button/Journal2.png')" 
+     onmouseout="swap_image( event, './material/button/Journal1.png')">
+   
+     <img src="./material/button/Journal1.png" width="18%" height="18%"/>
+   
+  </a>      
+
+</p>
+</div>
+</body>
+</html>
+
